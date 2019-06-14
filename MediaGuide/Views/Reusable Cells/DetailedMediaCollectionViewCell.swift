@@ -17,13 +17,14 @@ class DetailedMediaCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
     
-    var media:Media! {
+    var media:Media? {
         didSet {
-            viewModel = MediaDetailViewModel(with: media)
-            blurredImageView.sd_setImage(with: viewModel!.backdropURL(), placeholderImage: UIImage(named: "icons8-no_camera"))
-            imageView.sd_setImage(with: viewModel!.posterURL(), placeholderImage: UIImage(named: "icons8-no_camera"))
-            titleLabel.text = viewModel!.title()
-            descriptionLabel.text = viewModel!.overview()
+            guard let m = media else { return }
+            viewModel = MediaDetailViewModel(with: m)
+            blurredImageView.sd_setImage(with: viewModel?.backdropURL(), placeholderImage: UIImage(named: "icons8-no_camera"))
+            imageView.sd_setImage(with: viewModel?.posterURL(), placeholderImage: UIImage(named: "icons8-no_camera"))
+            titleLabel.text = viewModel?.title()
+            descriptionLabel.text = viewModel?.overview()
             
         }
     }

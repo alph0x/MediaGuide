@@ -12,37 +12,43 @@ import RxSwift
 class MediaDetailPresenter {
     
     let interactor = MediaDetailInteractor()
-    var viewModel:MediaDetailViewModel?
+    var viewModel:MediaDetailViewModel
     
     private let disposeBag = DisposeBag()
     
-    var detailsHandler:((Media) -> Void)?
-    var creditsHandler:(([UITableViewCell]) -> Void)?
-    var videosHandler:((UITableViewCell) -> Void)?
+    var detailsHandler:((Media) -> Void)
+    var creditsHandler:(([UITableViewCell]) -> Void)
+    var videosHandler:((UITableViewCell) -> Void)
     
     init() {
         viewModel = MediaDetailViewModel()
+        detailsHandler = { (media) in }
+        creditsHandler = { (credits) in }
+        videosHandler = { (videos) in}
     }
     
     convenience init(with tableView: UITableView) {
         self.init()
         interactor.detailsObservable.subscribe { (media) in
-            self.detailsHandler!(media.element!)
+            guard let elements = media.element else { return }
+            self.detailsHandler(elements)
             }.disposed(by: disposeBag)
         
         viewModel = MediaDetailViewModel(with: tableView)
         interactor.creditsObservable.subscribe { (credits) in
+            guard let elements = credits.element else { return }
             var cells:[UITableViewCell] = []
-            cells.append(self.viewModel!.creditsTableViewCell(for: credits.element!.crew))
-            cells.append(self.viewModel!.creditsTableViewCell(for: credits.element!.cast))
-            self.creditsHandler!(cells)
+            cells.append(self.viewModel.creditsTableViewCell(for: elements.crew))
+            cells.append(self.viewModel.creditsTableViewCell(for: elements.cast))
+            self.creditsHandler(cells)
         }.disposed(by: disposeBag)
         interactor.videosObservable.subscribe { (videos) in
-            if videos.element?.count == 0 {
-                self.videosHandler!(UITableViewCell())
+            guard let elements = videos.element else { return }
+            if elements.count == 0 {
+                self.videosHandler(UITableViewCell())
                 return
             }
-            self.videosHandler!(self.viewModel!.relatedVideosTableViewCell(for: videos.element!))
+            self.videosHandler(self.viewModel.relatedVideosTableViewCell(for: elements))
         }.disposed(by: disposeBag)
     }
     
@@ -52,11 +58,11 @@ class MediaDetailPresenter {
     }
     
     func overview(for media:Media, with updateHandler:@escaping ((UITableViewCell) -> Void)) {
-        updateHandler(viewModel!.overviewTableViewCell(for: media))
+        updateHandler(viewModel.overviewTableViewCell(for: media))
     }
     
     func summary(for media:Media, with updateHandler:@escaping ((UITableViewCell) -> Void)) {
-        updateHandler(viewModel!.summaryTableViewCell(for: media))
+        updateHandler(viewModel.summaryTableViewCell(for: media))
     }
     
     func credits(for media:Media, with updateHandler:@escaping (([UITableViewCell]) -> Void)) {

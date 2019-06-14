@@ -14,20 +14,25 @@ class SearchPresenter {
     private let interactor = SearchInteractor()
     private let disposeBag = DisposeBag()
     
-    var updateHandler:(([Media]) -> Void)?
+    var updateHandler:(([Media]) -> Void)
     
     init() {
+        updateHandler = {(media) in}
         interactor.moviesSearchObservable.subscribe { (media) in
-            self.updateHandler!(media.element!)
+            guard let elements = media.element else { return }
+            self.updateHandler(elements)
             }.disposed(by: self.disposeBag)
         interactor.moviesGenresObservable.subscribe { (movies) in
-            self.updateHandler!(movies.element!)
+            guard let elements = movies.element else { return }
+            self.updateHandler(elements)
             }.disposed(by: self.disposeBag)
         interactor.tvshowsSearchObservable.subscribe { (tvshows) in
-            self.updateHandler!(tvshows.element!)
+            guard let elements = tvshows.element else { return }
+            self.updateHandler(elements)
             }.disposed(by: self.disposeBag)
         interactor.tvshowsGenresObservable.subscribe { (tvshows) in
-            self.updateHandler!(tvshows.element!)
+            guard let elements = tvshows.element else { return }
+            self.updateHandler(elements)
             }.disposed(by: self.disposeBag)
     }
     

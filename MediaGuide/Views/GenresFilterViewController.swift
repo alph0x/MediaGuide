@@ -15,13 +15,13 @@ enum MediaMode {
 
 class GenresFilterViewController: UIViewController {
     let presenter = SearchPresenter()
-    var viewModel:MediaDetailViewModel?
+    var viewModel = MediaDetailViewModel()
     let router = DefaultMediaListRouter()
     
     @IBOutlet weak var tableView: UITableView!
     
     var mode:MediaMode?
-    var genres:[Genre]? = [] 
+    var genres:[Genre]? = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,7 +42,7 @@ extension GenresFilterViewController: UITableViewDelegate, UITableViewDataSource
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return viewModel!.genreTableViewCell(for: genres![indexPath.row])
+        return viewModel.genreTableViewCell(for: genres![indexPath.row])
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

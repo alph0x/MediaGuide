@@ -49,8 +49,9 @@ class TVShowsListInteractor {
     }
     
     func airingToday() {
-        airingTodayResource = api.tvShowsResource!.airingToday()
-        airingTodayResource!.addObserver(owner: self) {
+        guard let tvshowsResource = api.tvShowsResource else { return }
+        airingTodayResource = tvshowsResource.airingToday()
+        airingTodayResource?.addObserver(owner: self) {
             resource, event in
             if case .newData = event {
                 self.airingTodayObservable.onNext(self.handle(resource: resource))
@@ -59,8 +60,9 @@ class TVShowsListInteractor {
     }
     
     func popular() {
-        popularResource = api.tvShowsResource!.popular()
-        popularResource!.addObserver(owner: self) {
+        guard let tvshowsResource = api.tvShowsResource else { return }
+        popularResource = tvshowsResource.popular()
+        popularResource?.addObserver(owner: self) {
             resource, event in
             if case .newData = event {
                 self.popularObservable.onNext(self.handle(resource: resource))
@@ -69,8 +71,9 @@ class TVShowsListInteractor {
     }
     
     func topRated() {
-        topRatedResource = api.tvShowsResource!.topRated()
-        topRatedResource!.addObserver(owner: self) {
+        guard let tvshowsResource = api.tvShowsResource else { return }
+        topRatedResource = tvshowsResource.topRated()
+        topRatedResource?.addObserver(owner: self) {
             resource, event in
             if case .newData = event {
                 self.topRatedObservable.onNext(self.handle(resource: resource))
@@ -79,8 +82,9 @@ class TVShowsListInteractor {
     }
     
     func onTheAir() {
-        onTheAirResource = api.tvShowsResource!.onTheAir()
-        onTheAirResource!.addObserver(owner: self) {
+        guard let tvshowsResource = api.tvShowsResource else { return }
+        onTheAirResource = tvshowsResource.onTheAir()
+        onTheAirResource?.addObserver(owner: self) {
             resource, event in
             if case .newData = event {
                 self.onTheAirObservable.onNext(self.handle(resource: resource))

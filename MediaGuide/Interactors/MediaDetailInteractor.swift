@@ -61,11 +61,13 @@ class MediaDetailInteractor {
     
     func details(for media:Any) {
         if let movie = media as? Movie {
-            detailsResource = movies!.movie(id: "\(movie.id)")
+            guard let moviesResource = movies else { return }
+            detailsResource = moviesResource.movie(id: "\(movie.id)")
         }
         
         if let tvshow = media as? TVShow {
-            detailsResource = tvshows!.tvShow(id: "\(tvshow.id)")
+            guard let tvshowsResources = api.tvShowsResource else { return }
+            detailsResource = tvshowsResources.tvShow(id: "\(tvshow.id)")
         }
         
         detailsResource!.addObserver(owner: self) {
@@ -77,11 +79,13 @@ class MediaDetailInteractor {
     
     func credits(for media:Any) {
         if let movie = media as? Movie {
-            creditsResource = movies!.credits(id: "\(movie.id)")
+            guard let moviesResource = movies else { return }
+            creditsResource = moviesResource.credits(id: "\(movie.id)")
         }
         
         if let tvshow = media as? TVShow {
-            creditsResource = tvshows!.credits(id: "\(tvshow.id)")
+            guard let tvshowsResources = api.tvShowsResource else { return }
+            creditsResource = tvshowsResources.credits(id: "\(tvshow.id)")
         }
         
         creditsResource!.addObserver(owner: self) {
@@ -93,11 +97,13 @@ class MediaDetailInteractor {
     
     func videos(for media:Any) {
         if let movie = media as? Movie {
-            videosResource = movies!.videos(id: "\(movie.id)")
+            guard let moviesResource = movies else { return }
+            videosResource = moviesResource.videos(id: "\(movie.id)")
         }
         
         if let tvshow = media as? TVShow {
-            videosResource = tvshows!.videos(id: "\(tvshow.id)")
+            guard let tvshowsResources = api.tvShowsResource else { return }
+            videosResource = tvshowsResources.videos(id: "\(tvshow.id)")
         }
         
         videosResource!.addObserver(owner: self) {
@@ -109,11 +115,13 @@ class MediaDetailInteractor {
     
     func similar(for media:Any) {
         if let movie = media as? Movie {
-            similarResource = movies!.similar(id: "\(movie.id)")
+            guard let moviesResource = movies else { return }
+            similarResource = moviesResource.similar(id: "\(movie.id)")
         }
         
         if let tvshow = media as? TVShow {
-            similarResource = tvshows!.similar(id: "\(tvshow.id)")
+            guard let tvshowsResources = api.tvShowsResource else { return }
+            similarResource = tvshowsResources.similar(id: "\(tvshow.id)")
         }
         
         similarResource!.addObserver(owner: self) {
@@ -123,13 +131,15 @@ class MediaDetailInteractor {
             }.load()
     }
     
-    func reviews(for media:Any) {
+    func reviews(for media:Media) {
         if let movie = media as? Movie {
-            reviewsResource = movies!.reviews(id: "\(movie.id)")
+            guard let moviesResource = movies else { return }
+            reviewsResource = moviesResource.reviews(id: "\(movie.id)")
         }
         
         if let tvshow = media as? TVShow {
-            reviewsResource = tvshows!.reviews(id: "\(tvshow.id)")
+            guard let tvshowsResources = api.tvShowsResource else { return }
+            reviewsResource = tvshowsResources.reviews(id: "\(tvshow.id)")
         }
         
         reviewsResource!.addObserver(owner: self) {

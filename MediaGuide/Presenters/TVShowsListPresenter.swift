@@ -15,23 +15,28 @@ class TVShowsListPresenter {
     let interactor = TVShowsListInteractor()
     private let disposeBag = DisposeBag()
     
-    var updateHandler:((UITableViewCell) -> Void)?
+    var updateHandler:((UITableViewCell) -> Void)
     
     init(with tableView:UITableView) {
+        updateHandler = { (cells) in }
         let highlightedMedia = HighlightedMediaListViewModel()
         self.interactor.airingTodayObservable.subscribe { (tvshows) in
-            self.updateHandler!(highlightedMedia.instanceList(with: tvshows.element!, on: tableView))
+            guard let elements = tvshows.element else { return }
+            self.updateHandler(highlightedMedia.instanceList(with: elements, on: tableView))
             }.disposed(by: disposeBag)
         let detailedMedia = DetailedMediaListViewModel()
         self.interactor.popularObservable.subscribe { (tvshows) in
-            self.updateHandler!(detailedMedia.instanceList(with: tvshows.element!, on: tableView))
+            guard let elements = tvshows.element else { return }
+            self.updateHandler(detailedMedia.instanceList(with: elements, on: tableView))
             }.disposed(by: disposeBag)
         let defaultMedia = DefaultMediaListViewModel()
         self.interactor.topRatedObservable.subscribe { (tvshows) in
-            self.updateHandler!(defaultMedia.instanceList(with: "Top rated", and: tvshows.element!, on: tableView))
+            guard let elements = tvshows.element else { return }
+            self.updateHandler(defaultMedia.instanceList(with: "Top rated", and: elements, on: tableView))
             }.disposed(by: disposeBag)
         self.interactor.onTheAirObservable.subscribe { (tvshows) in
-            self.updateHandler!(defaultMedia.instanceList(with: "Top rated", and: tvshows.element!, on: tableView))
+            guard let elements = tvshows.element else { return }
+            self.updateHandler(defaultMedia.instanceList(with: "Top rated", and: elements, on: tableView))
             }.disposed(by: disposeBag)
     }
     

@@ -22,12 +22,13 @@ class DefaultMediaListViewController: UIViewController {
     
     var genre:Genre? {
         didSet {
+            guard let g = genre else { return }
             if mode == MediaMode.movies {
-                searchPresenter.moviesGenre(with: genre!) { (list) in
+                searchPresenter.moviesGenre(with: g) { (list) in
                     self.media = list
                 }
             }else{
-                searchPresenter.tvshowsGenre(with: genre!) { (list) in
+                searchPresenter.tvshowsGenre(with: g) { (list) in
                     self.media = list
                 }
             }
@@ -36,19 +37,20 @@ class DefaultMediaListViewController: UIViewController {
     
     var query:String? {
         didSet {
+            guard let q = query else { return }
             if mode == MediaMode.movies {
-                searchPresenter.moviesSearch(with: query!) { (list) in
+                searchPresenter.moviesSearch(with: q) { (list) in
                     self.media = list
                 }
             }else{
-                searchPresenter.tvshowsSearch(with: query!) { (list) in
+                searchPresenter.tvshowsSearch(with: q) { (list) in
                     self.media = list
                 }
             }
         }
     }
     
-    var media:[Media]? = [] {
+    var media:[Media] = [] {
         didSet{
             guard let collection = self.collectionView else { return }
             collection.reloadData()
@@ -67,16 +69,17 @@ class DefaultMediaListViewController: UIViewController {
 
 extension DefaultMediaListViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return media!.count
+        return media.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        return viewModel.instance(for: media![indexPath.row], on: collectionView, and: indexPath)
+        return viewModel.instance(for: media[indexPath.row], on: collectionView, and: indexPath)
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let c = collectionView.cellForItem(at: indexPath) as! DefaultMediaCollectionViewCell
-        self.router.push(media: c.media!, on: self)
+        guard let media = c.media else { return }
+        self.router.push(media: media, on: self)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {

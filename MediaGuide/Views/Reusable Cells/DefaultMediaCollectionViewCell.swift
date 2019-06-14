@@ -15,10 +15,11 @@ class DefaultMediaCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var imageView: UIImageView!
     
-    var media:Media! {
+    var media:Media? {
         didSet {
-            viewModel = MediaDetailViewModel(with: media)
-            imageView.sd_setImage(with: viewModel!.posterURL(), placeholderImage: UIImage(named: "icons8-no_camera"))
+            guard let m = media else { return }
+            viewModel = MediaDetailViewModel(with: m)
+            imageView.sd_setImage(with: viewModel?.posterURL(), placeholderImage: UIImage(named: "icons8-no_camera"))
         }
     }
 

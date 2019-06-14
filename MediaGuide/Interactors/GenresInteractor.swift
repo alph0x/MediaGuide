@@ -33,8 +33,9 @@ class GenresInteractor {
     }
     
     func movies() {
-        moviesGenresResource = api.genresResource!.movieGenres()
-        moviesGenresResource!.addObserver(owner: self) {
+        guard let genresResource = api.genresResource else { return }
+        moviesGenresResource = genresResource.movieGenres()
+        moviesGenresResource?.addObserver(owner: self) {
             resource, event in
             if case .newData = event {
                 guard let content:[Genre] = resource.typedContent() else { return }
@@ -44,8 +45,9 @@ class GenresInteractor {
     }
     
     func tvshow() {
-        tvshowsGenresResource = api.genresResource!.tvGenres()
-        tvshowsGenresResource!.addObserver(owner: self) {
+        guard let genresResource = api.genresResource else { return }
+        tvshowsGenresResource = genresResource.tvGenres()
+        tvshowsGenresResource?.addObserver(owner: self) {
             resource, event in
             if case .newData = event {
                 guard let content:[Genre] = resource.typedContent() else { return }

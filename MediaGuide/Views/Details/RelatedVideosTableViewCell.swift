@@ -13,7 +13,7 @@ class RelatedVideosTableViewCell: UITableViewCell {
     
     var viewModel:MediaDetailViewModel?
     
-    var videos:[Video]? = []{
+    var videos:[Video] = [] {
         didSet {
             collectionView.reloadData()
         }
@@ -42,11 +42,12 @@ class RelatedVideosTableViewCell: UITableViewCell {
 
 extension RelatedVideosTableViewCell: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return videos!.count
+        return videos.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        return viewModel!.videoCollectionViewCell(for: videos![indexPath.row], and: indexPath)
+        guard let vm = viewModel else { return UICollectionViewCell() }
+        return vm.videoCollectionViewCell(for: videos[indexPath.row], and: indexPath)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {

@@ -13,8 +13,6 @@ class HighlightedMediaListTableViewCell: UITableViewCell {
     let presenter = HighlightedMediaListViewModel()
     let router = MediaDetailRouter()
     
-    var updateHandler:(([Media]) -> Void)?
-    
     @IBOutlet weak var collectionView: UICollectionView!
     
     var dataSource:[Media] = [] {
@@ -52,7 +50,8 @@ extension HighlightedMediaListTableViewCell: UICollectionViewDelegate, UICollect
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let c = collectionView.cellForItem(at: indexPath) as! HighlightedMediaCollectionViewCell
-        self.router.push(media: c.media!)
+        guard let media = c.media else { return }
+        self.router.push(media: media)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {

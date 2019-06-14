@@ -14,7 +14,7 @@ class TVShowListViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     
-    var presenter:TVShowsListPresenter?
+    var presenter = TVShowsListPresenter(with: UITableView())
     let genresPresenter = GenresPresenter()
     var searchPresenter = SearchPresenter()
     
@@ -22,7 +22,7 @@ class TVShowListViewController: UIViewController {
     
     var searchController:UISearchController?
     
-    var genres:[Genre]? {
+    var genres:[Genre] = [] {
         didSet {
             let genresButton = UIBarButtonItem(title: "Genres", style: .plain, target: self, action: #selector(self.genresButtonTapped))
             self.navigationItem.rightBarButtonItem  = genresButton
@@ -40,7 +40,7 @@ class TVShowListViewController: UIViewController {
         presenter = TVShowsListPresenter(with: tableView)
         prepareSearchBar()
         registerReusableCells()
-        presenter!.dataSource { (cells) in
+        presenter.dataSource { (cells) in
             self.dataSource = cells
         }
         genresPresenter.tvshowsGenres { (genres) in
@@ -54,7 +54,7 @@ class TVShowListViewController: UIViewController {
     }
     
     @objc func genresButtonTapped() {
-        router.genresList(for: genres!, with: .tvshows, on: self.tabBarController!)
+        router.genresList(for: genres, with: .tvshows, on: self.tabBarController!)
     }
     
     func prepareSearchBar() {

@@ -11,15 +11,16 @@ import SDWebImage
 
 class MediaDetailViewController: UIViewController {
     
-    var viewModel:MediaDetailViewModel?{
+    var viewModel = MediaDetailViewModel() {
         didSet{
-            self.title = viewModel!.title()
-            imageView.sd_setImage(with: viewModel!.backdropURL(), placeholderImage: UIImage(named: "icons8-no_camera"))
+            self.title = viewModel.title()
+            imageView.sd_setImage(with: viewModel.backdropURL(), placeholderImage: UIImage(named: "icons8-no_camera"))
         }
     }
     var presenter:MediaDetailPresenter?{
         didSet{
-            presenter?.details(for: media!, with: { (details) in
+            guard let details = media else { return }
+            presenter?.details(for: details, with: { (details) in
                 self.presenter!.dataSource(for: details, with: { (cells) in
                     self.dataSource = cells
                     self.viewModel = MediaDetailViewModel(for: details, with: self.tableView)
@@ -38,7 +39,8 @@ class MediaDetailViewController: UIViewController {
     
     var media:Media? {
         didSet {
-            viewModel = MediaDetailViewModel(with: media!)
+            guard let details = media else { return }
+            viewModel = MediaDetailViewModel(with: details)
         }
     }
     

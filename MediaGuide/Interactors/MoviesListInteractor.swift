@@ -49,8 +49,9 @@ class MoviesListInteractor {
     }
     
     func nowPlaying() {
-        nowPlayingResource = api.moviesResources!.nowPlaying()
-        nowPlayingResource!.addObserver(owner: self) {
+        guard let moviesResource = api.moviesResources else { return }
+        nowPlayingResource = moviesResource.nowPlaying()
+        nowPlayingResource?.addObserver(owner: self) {
             resource, event in
             if case .newData = event {
                 guard let content:[Movie] = resource.typedContent() else { return }
@@ -60,8 +61,9 @@ class MoviesListInteractor {
     }
     
     func popular() {
-        popularResource = api.moviesResources!.popular()
-        popularResource!.addObserver(owner: self) {
+        guard let moviesResource = api.moviesResources else { return }
+        popularResource = moviesResource.popular()
+        popularResource?.addObserver(owner: self) {
             resource, event in
             if case .newData = event {
                 guard let content:[Movie] = resource.typedContent() else { return }
@@ -71,8 +73,9 @@ class MoviesListInteractor {
     }
     
     func upcoming() {
-        upcomingResource = api.moviesResources!.upcoming()
-        upcomingResource!.addObserver(owner: self) {
+        guard let moviesResource = api.moviesResources else { return }
+        upcomingResource = moviesResource.upcoming()
+        upcomingResource?.addObserver(owner: self) {
             resource, event in
             if case .newData = event {
                 guard let content:[Movie] = resource.typedContent() else { return }
@@ -82,8 +85,9 @@ class MoviesListInteractor {
     }
     
     func topRated() {
-        topRatedResource = api.moviesResources!.topRated()
-        topRatedResource!.addObserver(owner: self) {
+        guard let moviesResource = api.moviesResources else { return }
+        topRatedResource = moviesResource.topRated()
+        topRatedResource?.addObserver(owner: self) {
             resource, event in
             if case .newData = event {
                 guard let content:[Movie] = resource.typedContent() else { return }

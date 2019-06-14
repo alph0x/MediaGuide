@@ -14,7 +14,6 @@ import IGListKit
 class Movie: Codable, Media {
     let adult: Bool?
     let backdropPath: String?
-//    let belongsToCollection: String?
     let budget: Int?
     let genres: [Genre]?
     let homepage: String?
@@ -41,7 +40,6 @@ class Movie: Codable, Media {
     enum CodingKeys: String, CodingKey {
         case adult = "adult"
         case backdropPath = "backdrop_path"
-//        case belongsToCollection = "belongs_to_collection"
         case budget = "budget"
         case genres = "genres"
         case homepage = "homepage"

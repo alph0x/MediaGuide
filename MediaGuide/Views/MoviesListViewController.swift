@@ -14,7 +14,7 @@ class MoviesListViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
     
-    var presenter:MoviesListPresenter?
+    var presenter = MoviesListPresenter(with: UITableView())
     var genresPresenter = GenresPresenter()
     var searchPresenter = SearchPresenter()
     
@@ -40,7 +40,7 @@ class MoviesListViewController: UIViewController {
         presenter = MoviesListPresenter(with: tableView)
         prepareSearchBar()
         registerReusableCells()
-        presenter!.dataSource { (cells) in
+        presenter.dataSource { (cells) in
             self.dataSource = cells
         }
         genresPresenter.movieGenres { (genres) in

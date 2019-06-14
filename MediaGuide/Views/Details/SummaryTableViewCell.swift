@@ -12,7 +12,8 @@ class SummaryTableViewCell: UITableViewCell {
     
     var viewModel:MediaDetailViewModel? {
         didSet {
-            dataSource = viewModel!.summary()
+            guard let summary = viewModel?.summary() else { return }
+            dataSource = summary
         }
     }
     
@@ -24,7 +25,7 @@ class SummaryTableViewCell: UITableViewCell {
     
     @IBOutlet weak var tableView: UITableView!
     
-    var dataSource:[String:String]? {
+    var dataSource:[String:String] = [:] {
         didSet {
             tableView.reloadData()
         }
@@ -47,13 +48,12 @@ class SummaryTableViewCell: UITableViewCell {
 
 extension SummaryTableViewCell: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard let count = dataSource?.keys.count else { return 0 }
-        return count
+        return dataSource.keys.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let keys = Array(dataSource!.keys)
-        return viewModel!.summaryDetailTableViewCell(with: keys[indexPath.row], and: dataSource![keys[indexPath.row]]!)
+        let keys = Array(dataSource.keys)
+        return viewModel!.summaryDetailTableViewCell(with: keys[indexPath.row], and: dataSource[keys[indexPath.row]]!)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

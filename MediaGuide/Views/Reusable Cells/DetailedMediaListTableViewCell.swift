@@ -15,7 +15,7 @@ class DetailedMediaListTableViewCell: UITableViewCell {
     
     @IBOutlet weak var collectionView: UICollectionView!
     
-    var dataSource:[Media]? = [] {
+    var dataSource:[Media] = [] {
         didSet {
             self.collectionView.reloadData()
         }
@@ -40,16 +40,17 @@ class DetailedMediaListTableViewCell: UITableViewCell {
 
 extension DetailedMediaListTableViewCell: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return dataSource!.count
+        return dataSource.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        return viewModel.instance(for: dataSource![indexPath.row], on: collectionView, and: indexPath)
+        return viewModel.instance(for: dataSource[indexPath.row], on: collectionView, and: indexPath)
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let c = collectionView.cellForItem(at: indexPath) as! DetailedMediaCollectionViewCell
-        self.router.push(media: c.media!)
+        guard let media = c.media else { return }
+        self.router.push(media: media)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {

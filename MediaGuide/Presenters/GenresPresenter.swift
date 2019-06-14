@@ -14,14 +14,17 @@ class GenresPresenter {
     let interactor = GenresInteractor()
     private let disposeBag = DisposeBag()
     
-    var updateHandler:(([Genre]) -> Void)?
+    var updateHandler:(([Genre]) -> Void)
     
     init() {
+        updateHandler = {(genres) in}
         interactor.moviesGenresObservable.subscribe { (genres) in
-            self.updateHandler!(genres.element!)
+            guard let elements = genres.element else { return }
+            self.updateHandler(elements)
             }.disposed(by: disposeBag)
         interactor.tvshowsGenresObservable.subscribe { (genres) in
-            self.updateHandler!(genres.element!)
+            guard let elements = genres.element else { return }
+            self.updateHandler(elements)
             }.disposed(by: disposeBag)
     }
     

@@ -49,8 +49,9 @@ class SearchInteractor {
     }
     
     func movies(by query:String) {
-        moviesSearchResource = api.searchResource?.moviesSearch(with: query)
-        moviesSearchResource!.addObserver(owner: self){
+        guard let searchResource = api.searchResource else { return }
+        moviesSearchResource = searchResource.moviesSearch(with: query)
+        moviesSearchResource?.addObserver(owner: self){
             resource, event in
             guard let content:[Media] = resource.typedContent() else { return }
             self.moviesSearchObservable.onNext(content as! [Movie])
@@ -58,7 +59,8 @@ class SearchInteractor {
     }
     
     func movies(with genre:Genre) {
-        moviesGenresResource = api.discoverResource?.moviesGenres(with: genre)
+        guard let discoverResource = api.discoverResource else { return }
+        moviesGenresResource = discoverResource.moviesGenres(with: genre)
         moviesGenresResource!.addObserver(owner: self){
             resource, event in
             guard let content:[Media] = resource.typedContent() else { return }
@@ -67,8 +69,9 @@ class SearchInteractor {
     }
     
     func tvshows(by query:String) {
-        tvshowsSearchResource = api.searchResource?.tvshowsSearch(with: query)
-        tvshowsSearchResource!.addObserver(owner: self){
+        guard let searchResource = api.searchResource else { return }
+        tvshowsSearchResource = searchResource.tvshowsSearch(with: query)
+        tvshowsSearchResource?.addObserver(owner: self){
             resource, event in
             guard let content:[Media] = resource.typedContent() else { return }
             self.tvshowsSearchObservable.onNext(content as! [TVShow])
@@ -76,8 +79,9 @@ class SearchInteractor {
     }
     
     func tvshows(with genre:Genre) {
-        tvshowsGenreResource = api.discoverResource?.tvshowsGenres(with: genre)
-        tvshowsGenreResource!.addObserver(owner: self){
+        guard let discoverResource = api.discoverResource else { return }
+        tvshowsGenreResource = discoverResource.tvshowsGenres(with: genre)
+        tvshowsGenreResource?.addObserver(owner: self){
             resource, event in
             guard let content:[Media] = resource.typedContent() else { return }
             self.tvshowsGenresObservable.onNext(content as! [TVShow])

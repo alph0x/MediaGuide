@@ -14,23 +14,28 @@ class MoviesListPresenter {
     private let interactor = MoviesListInteractor()
     private let disposeBag = DisposeBag()
     
-    var updateHandler:((UITableViewCell) -> Void)?
+    var updateHandler:((UITableViewCell) -> Void)
     
     init(with tableView: UITableView) {
         let detailedMedia = DetailedMediaListViewModel()
         let highlightedMedia = HighlightedMediaListViewModel()
+        updateHandler = { (movies) in }
         interactor.nowPlayingObservable.subscribe { (movies) in
-            self.updateHandler!(highlightedMedia.instanceList(with: movies.element!, on: tableView))
+            guard let elements = movies.element else { return }
+            self.updateHandler(highlightedMedia.instanceList(with: elements, on: tableView))
             }.disposed(by: self.disposeBag)
         interactor.popularObservable.subscribe { (movies) in
-            self.updateHandler!(detailedMedia.instanceList(with: movies.element!, on: tableView))
+            guard let elements = movies.element else { return }
+            self.updateHandler(detailedMedia.instanceList(with: elements, on: tableView))
             }.disposed(by: self.disposeBag)
         let defaultMedia = DefaultMediaListViewModel()
         interactor.topRatedObservable.subscribe { (movies) in
-            self.updateHandler!(defaultMedia.instanceList(with: "Top rated", and: movies.element!, on: tableView))
+            guard let elements = movies.element else { return }
+            self.updateHandler(defaultMedia.instanceList(with: "Top rated", and: elements, on: tableView))
             }.disposed(by: self.disposeBag)
         interactor.upcomingObservable.subscribe { (movies) in
-            self.updateHandler!(defaultMedia.instanceList(with: "Upcoming", and: movies.element!, on: tableView))
+            guard let elements = movies.element else { return }
+            self.updateHandler(defaultMedia.instanceList(with: "Upcoming", and: elements, on: tableView))
             }.disposed(by: self.disposeBag)
     }
     

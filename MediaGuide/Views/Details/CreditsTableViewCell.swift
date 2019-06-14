@@ -10,7 +10,7 @@ import UIKit
 
 class CreditsTableViewCell: UITableViewCell {
     
-    var credits:[Any]?{
+    var credits:[Any] = []{
         didSet {
             
         }
