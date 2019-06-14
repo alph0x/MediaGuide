@@ -1,0 +1,6 @@
+framework module Pods_MediaGuideTests {
+  umbrella header "Pods-MediaGuideTests-umbrella.h"
+
+  export *
+  module * { export * }
+}

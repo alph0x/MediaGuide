@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VariablesViewState
+   version = "1.0">
+   <ContextStates>
+      <ContextState
+         contextName = "closure #2 in SearchPresenter.init():SearchPresenter.swift">
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in MediaDetailInteractor.details(for:with:):MediaDetailInteractor.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "content as Movie">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "MediaDetailViewModel.website(button:for:):MediaDetailViewModel.swift">
+      </ContextState>
+      <ContextState
+         contextName = "OverviewTableViewCell.media.didset:OverviewTableViewCell.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "media as Movie">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "OverviewTableViewCell.awakeFromNib():OverviewTableViewCell.swift">
+      </ContextState>
+      <ContextState
+         contextName = "MediaDetailViewModel.overviewTableViewCell(for:):MediaDetailViewModel.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "media as Movie">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "MediaDetailViewController.viewDidLoad():MediaDetailViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "media as! Movie">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in MediaDetailViewController.presenter.didset:MediaDetailViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "details as Movie">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in MediaDetailPresenter.init(with:):MediaDetailPresenter.swift">
+      </ContextState>
+      <ContextState
+         contextName = "MoviesListPresenter.dataSource(for:):MoviesListPresenter.swift">
+      </ContextState>
+      <ContextState
+         contextName = "OverviewTableViewCell.viewModel.didset:OverviewTableViewCell.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "media  as Movie">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "DefaultMediaListViewController.media.didset:DefaultMediaListViewController.swift">
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in DefaultMediaListTableViewCell.collectionView(_:didSelectItemAt:):DefaultMediaListTableViewCell.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "c.media as! Movie">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "MediaDetailPresenter.dataSource(for:with:):MediaDetailPresenter.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "media as Movie">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "MoviesListInteractor.resourceChanged(_:event:):MoviesListInteractor.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "resource.typedContent()">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "MediaDetailViewModel.backdropURL():MediaDetailViewModel.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "media as Movie">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "MediaDetailPresenter.overview(for:with:):MediaDetailPresenter.swift">
+      </ContextState>
+      <ContextState
+         contextName = "MediaDetailViewModel.website(button:):MediaDetailViewModel.swift">
+      </ContextState>
+      <ContextState
+         contextName = "closure #4 in MediaDetailPresenter.dataSource(for:on:with:):MediaDetailPresenter.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "c as RelatedVideosTableViewCell">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "Movie.__allocating_init(json:):Movie.swift">
+      </ContextState>
+   </ContextStates>
+</VariablesViewState>

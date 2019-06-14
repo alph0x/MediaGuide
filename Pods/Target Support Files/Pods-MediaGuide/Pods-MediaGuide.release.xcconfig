@@ -1,0 +1,11 @@
+ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES
+FRAMEWORK_SEARCH_PATHS = $(inherited) "${PODS_CONFIGURATION_BUILD_DIR}/Cache" "${PODS_CONFIGURATION_BUILD_DIR}/EmptyDataSet-Swift" "${PODS_CONFIGURATION_BUILD_DIR}/IGListKit" "${PODS_CONFIGURATION_BUILD_DIR}/RxCocoa" "${PODS_CONFIGURATION_BUILD_DIR}/RxSwift" "${PODS_CONFIGURATION_BUILD_DIR}/SDWebImage" "${PODS_CONFIGURATION_BUILD_DIR}/Siesta" "${PODS_CONFIGURATION_BUILD_DIR}/SwiftyJSON" "${PODS_CONFIGURATION_BUILD_DIR}/SwiftyUtils" "${PODS_CONFIGURATION_BUILD_DIR}/YouTubePlayer"
+GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
+HEADER_SEARCH_PATHS = $(inherited) "${PODS_CONFIGURATION_BUILD_DIR}/Cache/Cache.framework/Headers" "${PODS_CONFIGURATION_BUILD_DIR}/EmptyDataSet-Swift/EmptyDataSet_Swift.framework/Headers" "${PODS_CONFIGURATION_BUILD_DIR}/IGListKit/IGListKit.framework/Headers" "${PODS_CONFIGURATION_BUILD_DIR}/RxCocoa/RxCocoa.framework/Headers" "${PODS_CONFIGURATION_BUILD_DIR}/RxSwift/RxSwift.framework/Headers" "${PODS_CONFIGURATION_BUILD_DIR}/SDWebImage/SDWebImage.framework/Headers" "${PODS_CONFIGURATION_BUILD_DIR}/Siesta/Siesta.framework/Headers" "${PODS_CONFIGURATION_BUILD_DIR}/SwiftyJSON/SwiftyJSON.framework/Headers" "${PODS_CONFIGURATION_BUILD_DIR}/SwiftyUtils/SwiftyUtils.framework/Headers" "${PODS_CONFIGURATION_BUILD_DIR}/YouTubePlayer/YouTubePlayer.framework/Headers"
+LD_RUNPATH_SEARCH_PATHS = $(inherited) '@executable_path/Frameworks' '@loader_path/Frameworks'
+OTHER_LDFLAGS = $(inherited) -l"c++" -framework "Cache" -framework "EmptyDataSet_Swift" -framework "Foundation" -framework "IGListKit" -framework "ImageIO" -framework "RxCocoa" -framework "RxSwift" -framework "SDWebImage" -framework "Siesta" -framework "SwiftyJSON" -framework "SwiftyUtils" -framework "UIKit" -framework "YouTubePlayer"
+OTHER_SWIFT_FLAGS = $(inherited) -D COCOAPODS
+PODS_BUILD_DIR = ${BUILD_DIR}
+PODS_CONFIGURATION_BUILD_DIR = ${PODS_BUILD_DIR}/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)
+PODS_PODFILE_DIR_PATH = ${SRCROOT}/.
+PODS_ROOT = ${SRCROOT}/Pods

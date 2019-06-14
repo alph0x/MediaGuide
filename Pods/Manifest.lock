@@ -1,0 +1,69 @@
+PODS:
+  - Cache (5.2.0)
+  - EmptyDataSet-Swift (4.2.0)
+  - IGListKit (3.4.0):
+    - IGListKit/Default (= 3.4.0)
+  - IGListKit/Default (3.4.0):
+    - IGListKit/Diffing
+  - IGListKit/Diffing (3.4.0)
+  - RxCocoa (4.5.0):
+    - RxSwift (>= 4.4.2, ~> 4.4)
+  - RxSwift (4.5.0)
+  - SDWebImage (5.0.4):
+    - SDWebImage/Core (= 5.0.4)
+  - SDWebImage/Core (5.0.4)
+  - Siesta (1.4.3):
+    - Siesta/Core (= 1.4.3)
+  - Siesta/Core (1.4.3)
+  - SwiftyJSON (4.3.0)
+  - SwiftyUtils (4.0.0)
+  - YouTubePlayer (0.4.0)
+
+DEPENDENCIES:
+  - Cache
+  - EmptyDataSet-Swift (~> 4.2.0)
+  - IGListKit (~> 3.0)
+  - RxCocoa (~> 4.0)
+  - RxSwift (~> 4.0)
+  - SDWebImage (~> 5.0)
+  - Siesta (~> 1.0)
+  - SwiftyJSON (~> 4.0)
+  - SwiftyUtils (from `https://github.com/tbaranes/SwiftyUtils.git`)
+  - YouTubePlayer
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - Cache
+    - EmptyDataSet-Swift
+    - IGListKit
+    - RxCocoa
+    - RxSwift
+    - SDWebImage
+    - Siesta
+    - SwiftyJSON
+    - YouTubePlayer
+
+EXTERNAL SOURCES:
+  SwiftyUtils:
+    :git: https://github.com/tbaranes/SwiftyUtils.git
+
+CHECKOUT OPTIONS:
+  SwiftyUtils:
+    :commit: adf37824622a46190aef33be686163311888a3c9
+    :git: https://github.com/tbaranes/SwiftyUtils.git
+
+SPEC CHECKSUMS:
+  Cache: 807c5d86d01a177f06ede9865add3aea269bbfd4
+  EmptyDataSet-Swift: 1fa0b35f530a35f852ecb2b53564728b0c300aaf
+  IGListKit: 7a5d788e9fb746bcd402baa8e8b24bc3bd2a5a07
+  RxCocoa: cbf70265dc65a981d4ac982e513c10cf23df24a0
+  RxSwift: f172070dfd1a93d70a9ab97a5a01166206e1c575
+  SDWebImage: c739016e4bdf0a4a1f9a04b5e0385395ad63a282
+  Siesta: 83795fdf6a43232d1d2909e1a3dfb92ab5916d26
+  SwiftyJSON: 6faa0040f8b59dead0ee07436cbf76b73c08fd08
+  SwiftyUtils: e2c0b1fd674684e1083c894f6a71a64bb9617402
+  YouTubePlayer: 028451f6772f372d4759866db99824c676ac1473
+
+PODFILE CHECKSUM: 291eecf131a79e5ea1246c721b63805a00415123
+
+COCOAPODS: 1.7.1
